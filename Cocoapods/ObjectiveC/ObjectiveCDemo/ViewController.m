@@ -42,6 +42,21 @@
     [self.streamrootSDK displayStatsOnView:self.contentOverlayView];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    [self.player play];
+
+    AVPlayerItem * item = self.player.currentItem;
+
+    if (item != nil) {
+        AVURLAsset * asset = (AVURLAsset *) item.asset;
+        if (asset != nil) {
+            NSNumber *duration = @(CMTimeGetSeconds(asset.duration));
+        }
+    }
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
   [self.streamrootSDK stop];
 }
